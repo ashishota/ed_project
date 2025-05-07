@@ -7,14 +7,18 @@ from sklearn.metrics.pairwise import cosine_similarity
 import os
 import nltk
 
-nltk_data_path = os.path.join(os.path.expanduser("~"), "nltk_data")
-if not os.path.exists(nltk_data_path):
-    os.mkdir(nltk_data_path)
+# Set up custom NLTK data directory
+nltk_data_dir = os.path.join(os.path.expanduser("~"), "nltk_data")
+if not os.path.exists(nltk_data_dir):
+    os.makedirs(nltk_data_dir)
 
-nltk.download('punkt', download_dir=nltk_data_path)
-nltk.download('stopwords', download_dir=nltk_data_path)
+# Download necessary resources to the custom path
+nltk.download("punkt", download_dir=nltk_data_dir)
+nltk.download("stopwords", download_dir=nltk_data_dir)
 
-nltk.data.path.append(nltk_data_path)
+# Make sure NLTK knows where to look
+nltk.data.path.append(nltk_data_dir)
+
 
 
 # Load saved model files
