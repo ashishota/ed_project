@@ -1,14 +1,21 @@
 import streamlit as st
 import pickle
-import nltk
 import re
 import fitz  # PyMuPDF
 from nltk.corpus import stopwords
 from sklearn.metrics.pairwise import cosine_similarity
+import os
+import nltk
 
-# Download NLTK resources
-nltk.download('punkt')
-nltk.download('stopwords')
+nltk_data_path = os.path.join(os.path.expanduser("~"), "nltk_data")
+if not os.path.exists(nltk_data_path):
+    os.mkdir(nltk_data_path)
+
+nltk.download('punkt', download_dir=nltk_data_path)
+nltk.download('stopwords', download_dir=nltk_data_path)
+
+nltk.data.path.append(nltk_data_path)
+
 
 # Load saved model files
 df = pickle.load(open('df.pkl', 'rb'))
